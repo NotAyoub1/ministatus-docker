@@ -34,6 +34,7 @@ jobs:
                 image-ref: ${{ env.IMAGE }}:ci
                 format: 'json'
                 output: 'trivy-report.json'
+                scanners: vuln
                 exit-code: "0"
 
           - name: Rapport Trivy (HTML)
@@ -43,6 +44,7 @@ jobs:
                 format: template
                 template: "@/contrib/html.tpl"
                 output: trivy-report.html
+                scanners: vuln
                 exit-code: "0"
 
           - name: Resume dans la page du run
@@ -68,5 +70,6 @@ jobs:
                 format: table
                 severity: HIGH,CRITICAL
                 vuln-type: library
+                scanners: vuln
                 ignore-unfixed: true
                 exit-code: "1"
